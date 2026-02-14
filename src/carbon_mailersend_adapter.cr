@@ -37,8 +37,8 @@ class Carbon::MailersendAdapter < Carbon::Adapter
         "subject" => email.subject,
         "html"    => email.html_body,
         "text"    => email.text_body,
-        "variables" => [simple_personalization],
-        "personalization" => [advanced_personalization]
+        # "variables" => [simple_personalization],
+        # "personalization" => [advanced_personalization]
     }.compact
 
       if template_id = email.template_id
