@@ -31,31 +31,13 @@ class Carbon::MailersendAdapter < Carbon::Adapter
     end
 
     def params
-      data = {
+      {
         "from"    => from,
         "to"      => to_mailersend_address(email.to),
         "subject" => email.subject,
         "html"    => email.html_body,
         "text"    => email.text_body,
-        # "variables" => [simple_personalization],
-        # "personalization" => [advanced_personalization]
-    }.compact
-
-      if template_id = email.template_id
-        data = data.merge!({"template_id" => template_id})
-      else
-        raise MailersendTemplateError.new <<-ERROR
-          You must specify a template_id if you plan to use a template.
-
-          In your custom email class define a method with the required template_id:
-
-          ▸ def template_id
-            "xxxxxxxxxxx"
-            end
-          ERROR
-      end
-
-      data
+      }
     end
 
     private def to_mailersend_address(addresses : Array(Carbon::Address))
