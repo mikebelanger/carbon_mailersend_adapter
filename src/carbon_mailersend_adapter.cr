@@ -35,8 +35,8 @@ class Carbon::MailersendAdapter < Carbon::Adapter
         "from"    => from,
         "to"      => to_mailersend_address(email.to),
         "subject" => email.subject,
-        "html"    => email.html_body,
-        "text"    => email.text_body,
+        "html"    => email.html_body || "<h1>No HTML body found</h1>",
+        "text"    => email.text_body || "No text body found"
       }
     end
 
